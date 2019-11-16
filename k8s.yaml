@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mappd
+  labels:
+    app: mapp
+spec:
+  selector:
+    matchLabels:
+      app: mapp
+  replicas: 1
+  template:
+    metadata:
+      name: mappd
+      labels:
+        app: mapp
+    spec:
+      containers:
+        - name: mappc
+          #image: <username>/<ns>-<remote-name>-<ns>.<deployment-name>-<container-name>
+          image:  docker.io/daggerok/default-mapp-default.mappd-mappc
+          imagePullPolicy: IfNotPresent
+          ports:
+            #- containerPort: 8080
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mapps
+  labels:
+    app: mapp
+spec:
+  ports:
+    #- port: 8080
+    - port: 8080
+      name: http
+      protocol: TCP
+      targetPort: 80
+  type: LoadBalancer
+  selector:
+    app: mapp
+---

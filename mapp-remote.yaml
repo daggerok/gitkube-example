@@ -1,0 +1,29 @@
+apiVersion: gitkube.sh/v1alpha1
+kind: Remote
+metadata:
+  creationTimestamp: null
+  name: mapp
+  namespace: default
+spec:
+  authorizedKeys:
+  - |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxcrB93txR3ozRhC6XfwItpJ0ccBboluz6EqHVYBFtkaM7A4UzHr3Tl6FfhXHmK/51FabGkElzzjPPWuhW4hpJ/FcZQSB/LeYA2qzE2g9HjJmEBHbjYvyG5oJYrAtumgSmv6G89sR9O7Km8lgs2i8fu46hxyR3QMCGTFgOwKExDN6vkLUtbTEJF0eQiFQxgYUdyEXCWo9qRUiF2yBJ6WXshdkrzTJqGBPAHYlh0vm23VDR2RlwTGBLi4DXjwk+tSrywEYuCc9uwmUNWvaCYEEPhqGXOeATlgQHsfeQDT4T/E/zIRcu2O/dNLutnM7Dq43ZWXu+Y3fvV3DjP6r3lQ75u0v5wOtmKu7o1UT5WdJrgoV/OLcIb48OnfFJUfAPfZNoEvKaXsToK+7gl+1JPb/N2IQKkxmMMrpyCcrOF39lGlrUyHbz+vsX0KEZ630tJ+XRSvOsZG+v5jNDKuu9wpuTS8f3kMAET8ZbJ95hxe4AUWVoWip/JcmVZUDQmq7UTwurlbPswH+WdwvMk7rCUY8UxAW21pr3eY1ssxNhrElheQuXONBsT89mbe2rnPakyQ4Nea4PUovXHWePgHqdqnPLxhlkeDWm2HT2+fkTotrkQO7uHe/EwCdmWyj/uMXHMdX/BheEebLo/WNFFnsVRI8QsAE1M0bwKnUt6vZjtEMCCw== maksim.kostromin@sigma.software
+  deployments:
+  - containers:
+    - dockerfile: Dockerfile
+      name: mappc
+      path: ./
+    name: mappd
+  manifests:
+    helm: {}
+    path: ""
+  registry:
+    credentials:
+      secretKeyRef:
+        key: ""
+      secretRef: regsecret
+      #secretRef: mapp-regsecret
+    url: docker.io/daggerok
+status:
+  remoteUrl: ""
+  remoteUrlDesc: ""
