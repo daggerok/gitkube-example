@@ -32,7 +32,10 @@ gitkube uninstall
 ## re-do after clean / clone
 
 ```bash
-kubectl create secret docker-registry regsecret --docker-server=https://index.docker.io/v1/ --docker-username=daggerok --docker-email=daggerok@gmail.com --docker-password=...
+kubectl create secret docker-registry regsecret --docker-server=https://index.docker.io/v1/ \
+  --docker-username=daggerok --docker-email=daggerok@gmail.com \
+  --docker-password=...
+
 kubectl create -f k8s.yaml
 gitkube remote create -f mapp-remote.yaml
 git remote add mapp ssh://default-mapp@localhost/~/git/default-mapp
